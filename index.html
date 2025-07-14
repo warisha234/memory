@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>1 Year of Friendship</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffe0e6, #fce3fc);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 950px;
+      width: 100%;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #e8567c;
+      margin-bottom: 10px;
+    }
+
+    .heart {
+      font-size: 40px;
+      animation: beat 1s infinite;
+      color: #ff4d6d;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    p {
+      margin: 20px auto;
+      font-size: 17px;
+      color: #555;
+      line-height: 1.7;
+      max-width: 700px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(255, 85, 110, 0.4);
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    /* Modal Style */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 99;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .modal-caption {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="heart">💖</div>
+    <h1>Cheers to One Year of Friendship!</h1>
+    <p>
+      Aaj humari dosti ko ek saal mukammal ho gaya — yaani ek saal hasi, muskurahat, dil se ki gayi baatein aur anmol yaadein.  
+      Tujh jaisi dost milna naseeb walon ko hota hai.  
+      Har moment, har lamha tere sath kuch khaas tha — aur hamesha rahega. 💫
+    </p>
+
+    <div class="gallery">
+      <img src="img1.jpeg" alt="Lunch Day" data-caption="Always together ❤️">
+      <img src="img2.jpeg" alt="Study Day" data-caption="Fun times during study break 📚✨">
+      <img src="img3.jpeg" alt="Selfie" data-caption="That one cute selfie moment 📸">
+      <img src="img4.jpeg" alt="Laughing" data-caption="When laughter never ended 😂💬">
+    </div>
+
+    <div class="footer">— Tumhari  Dost, Warisha 🌸</div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="imageModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImg" src="" alt="">
+      <div class="modal-caption" id="captionText"></div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const captionText = document.getElementById("captionText");
+
+    document.querySelectorAll(".gallery img").forEach((img) => {
+      img.addEventListener("click", function () {
+        modal.style.display = "flex";
+        modalImg.src = this.src;
+        captionText.innerText = this.getAttribute("data-caption");
+      });
+    });
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    window.addEventListener("click", function (e) {
+      if (e.target == modal) closeModal();
+    });
+  </script>
+</body>
+</html>
